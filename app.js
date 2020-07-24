@@ -174,7 +174,10 @@ function validateEmail(input) {
 };
 function init() {
     questionHanlder.askManager()
-    .then( () => console.log(generatePage(questionHanlder.managerCard,questionHanlder.engineerCards,questionHanlder.internCards)))
+    .then( () => {
+        const page = generatePage(questionHanlder.managerCard,questionHanlder.engineerCards,questionHanlder.internCards)
+        fs.writeFile('./dist/index.html',page, err => (err) ? console.log(err) : console.log("The page is complete, find it in the /dist folder!"))
+    })
 }
 
 init()
