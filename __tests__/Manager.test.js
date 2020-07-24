@@ -1,6 +1,6 @@
 const Manager = require('../lib/Manager')
 
-test('creates an engineer object', () => {
+test('creates a manager object', () => {
     const manager = new Manager('Robert','2','robert@email.com','2')
 
     expect(manager.name).toBe('Robert')
@@ -21,5 +21,4 @@ test('creates HTML content  with the makeCard method', () => {
     expect(manager.makeCard()).toContain('<div class')
     expect(manager.makeCard()).toContain('<ul class')
     expect(manager.makeCard()).toContain('<li class')
-    console.log(manager.makeCard())
 })

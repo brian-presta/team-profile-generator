@@ -21,5 +21,4 @@ test('creates HTML content  with the makeCard method', () => {
     expect(engineer.makeCard()).toContain('<div class')
     expect(engineer.makeCard()).toContain('<ul class')
     expect(engineer.makeCard()).toContain('<li class')
-    console.log(engineer.makeCard())
 })
