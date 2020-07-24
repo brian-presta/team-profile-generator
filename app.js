@@ -66,7 +66,7 @@ const questionHanlder = {
                     return true;
                 } 
                 else {
-                    console.log('Please enter a username.');
+                    console.log('\n\nPlease enter a username.\n');
                     return false;
                 }
             }
@@ -100,7 +100,7 @@ const questionHanlder = {
                     return true
                 }
                 else {
-                    console.log("Please enter the school's name")
+                    console.log("\n\nPlease enter the school's name\n")
                     return false
                 }
             }
@@ -150,7 +150,7 @@ function validateName(input) {
         return true;
     } 
     else {
-        console.log('Please enter a name.');
+        console.log('\n\nPlease enter a name.\n');
         return false;
     }
 }; 
@@ -159,7 +159,7 @@ function validateNumber(input) {
         return true;
     } 
     else {
-        console.log('Please enter a number.');
+        console.log('\n\nPlease enter a number.\n');
         return false;
     }
 };
@@ -168,7 +168,7 @@ function validateEmail(input) {
         return true;
     } 
     else {
-        console.log('Please enter a email address.');
+        console.log('\n\nPlease enter a email address.\n');
         return false;
     }
 };
