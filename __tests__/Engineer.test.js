@@ -12,13 +12,13 @@ test('creates an engineer object', () => {
 
 test('creates HTML content  with the makeCard method', () => {
     const engineer = new Engineer('Robert','4','robert@email.com','robert-dev')
-
-    expect(engineer.makeCard()).toContain(engineer.name)
-    expect(engineer.makeCard()).toContain(engineer.role)
-    expect(engineer.makeCard()).toContain(engineer.employeeID)
-    expect(engineer.makeCard()).toContain(engineer.email)
-    expect(engineer.makeCard()).toContain(engineer.gitHub)
-    expect(engineer.makeCard()).toContain('<div class')
-    expect(engineer.makeCard()).toContain('<ul class')
-    expect(engineer.makeCard()).toContain('<li class')
+    const card = engineer.makeCard()
+    expect(card).toContain(engineer.name)
+    expect(card).toContain(engineer.role)
+    expect(card).toContain(engineer.employeeID)
+    expect(card).toContain(engineer.email)
+    expect(card).toContain(engineer.gitHub)
+    expect(card).toContain('<div class')
+    expect(card).toContain('<ul class')
+    expect(card).toContain('<li class')
 })

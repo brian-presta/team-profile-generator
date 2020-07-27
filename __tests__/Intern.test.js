@@ -12,13 +12,13 @@ test('creates an intern object', () => {
 
 test('creates HTML content  with the makeCard method', () => {
     const intern = new Intern('Robert','14','robert@email.com','San Francisco State')
-
-    expect(intern.makeCard()).toContain(intern.name)
-    expect(intern.makeCard()).toContain(intern.role)
-    expect(intern.makeCard()).toContain(intern.employeeID)
-    expect(intern.makeCard()).toContain(intern.email)
-    expect(intern.makeCard()).toContain(intern.school)
-    expect(intern.makeCard()).toContain('<div class')
-    expect(intern.makeCard()).toContain('<ul class')
-    expect(intern.makeCard()).toContain('<li class')
+    const card = intern.makeCard()
+    expect(card).toContain(intern.name)
+    expect(card).toContain(intern.role)
+    expect(card).toContain(intern.employeeID)
+    expect(card).toContain(intern.email)
+    expect(card).toContain(intern.school)
+    expect(card).toContain('<div class')
+    expect(card).toContain('<ul class')
+    expect(card).toContain('<li class')
 })

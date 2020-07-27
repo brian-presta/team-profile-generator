@@ -11,12 +11,12 @@ test('creates an employee object', () => {
 
 test('creates HTML content  with the startCard method', () => {
     const employee = new Employee('Robert','4','robert@email.com')
-
-    expect(employee.startCard('')).toContain(employee.name)
-    expect(employee.startCard('')).toContain(employee.role)
-    expect(employee.startCard('')).toContain(employee.employeeID)
-    expect(employee.startCard('')).toContain(employee.email)
-    expect(employee.startCard('')).toContain('<div class')
-    expect(employee.startCard('')).toContain('<ul class')
-    expect(employee.startCard('')).toContain('<li class')
+    const card = employee.startCard('')
+    expect(card).toContain(employee.name)
+    expect(card).toContain(employee.role)
+    expect(card).toContain(employee.employeeID)
+    expect(card).toContain(employee.email)
+    expect(card).toContain('<div class')
+    expect(card).toContain('<ul class')
+    expect(card).toContain('<li class')
 })

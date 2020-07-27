@@ -5,6 +5,8 @@ const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
 const generatePage = require('./src/generatePage')
 
+// the questionHanlder object controls all of the inquirer logic; it stores the questions as properties, the prompts as methods,
+// and the answers as properties
 const questionHanlder = {
     managerQuestions: [
         {
@@ -32,12 +34,6 @@ const questionHanlder = {
             validate: validateNumber
         } 
     ],
-    newProfile: {
-        type: 'list',
-        name: 'newProfile',
-        message: 'Would you like to add a profile for another employee?',
-        choices: ['Yes, an engineer','Yes, an intern','No Thanks']
-    },
     engineerQuestions: [
         {
             type: 'input',
@@ -106,27 +102,26 @@ const questionHanlder = {
             }
         }
     ],
+    newProfile: {
+        type: 'list',
+        name: 'newProfile',
+        message: 'Would you like to add a profile for another employee?',
+        choices: ['Yes, an engineer','Yes, an intern',"No, I'm finished."]
+    },
+    // the fooCard properties hold the user's answers to the prompted Inquirer questions. They're initialized as empty
+    // strings and built out with string concantenation
     managerCard: '',
     engineerCards: '',
     internCards: '',
-    askManager(){
+    // the askFoo methods gather information from the user, then use the corresponding constructor class to make an object
+    // to hold that information, then use the makeCard method to format an HTML string which is then stored, to be passed to the 
+    // generatePage function later. Each function ends by using the askNewProfile method to ask the user if they'd like to keep adding
+    // cards
+    askManager() {
         return inquirer.prompt(this.managerQuestions)
         .then(response => {
             this.managerCard += (new Manager(response.name,response.employeeID,response.email,response.officeNumber)).makeCard()
             return this.askNewProfile()
-        })
-    },
-    askNewProfile() {
-        return inquirer.prompt(this.newProfile)
-        .then(response => {
-            if (response.newProfile === 'Yes, an engineer') {
-                return this.askEngineer()
-            }
-            if (response.newProfile === 'Yes, an intern') {
-                return this.askIntern()
-            } 
-            return
-            
         })
     },
     askEngineer(){
@@ -142,9 +137,22 @@ const questionHanlder = {
             this.internCards += (new Intern(response.name,response.employeeID,response.email,response.school)).makeCard();
             return this.askNewProfile();
         })
+    },
+    // askNewProfile asks the user if they'd like to keep adding cards and ends the method loop if they don't
+    askNewProfile() {
+        return inquirer.prompt(this.newProfile)
+        .then(response => {
+            if (response.newProfile === 'Yes, an engineer') {
+                return this.askEngineer()
+            }
+            if (response.newProfile === 'Yes, an intern') {
+                return this.askIntern()
+            } 
+            return
+        })
     }
-
 };
+// these are validation functions to be used in the Inquirer questions
 function validateName(input) {
     if (input) {
         return true;
@@ -173,9 +181,12 @@ function validateEmail(input) {
     }
 };
 function init() {
+    // askManager will chain into the other ask methods
     questionHanlder.askManager()
     .then( () => {
+        // the users answers, already formatted into HTML, are passed into the generatePage function
         const page = generatePage(questionHanlder.managerCard,questionHanlder.engineerCards,questionHanlder.internCards)
+        // the page is generated as an HTML file, the user is singalled with a success or failure message
         fs.writeFile('./dist/index.html',page, err => (err) ? console.log(err) : console.log("The page is complete, find it in the /dist folder!"))
     })
 }
