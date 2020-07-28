@@ -10,3 +10,6 @@ You can view a video walkthrough for using the app [here](https://drive.google.c
 ![UI](./assets/images/UI.PNG?raw=true "UI")
 
 ![Result](./assets/images/result.PNG?raw=true "Result")
+
+## Deployment
+You can view an example output page at https://brian-presta.github.io/team-profile-generator/
